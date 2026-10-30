@@ -1,0 +1,3 @@
+PrepCoach — Placement-prep AI coach
+Built for the BharatCode Build League (https://bharatcode.ai/hackathon)
+Team: Fortec (solo entry)

@@ -1,0 +1,326 @@
+{
+ "interview": {
+  "Full Stack Developer": {
+   "junior": [
+    "Explain the difference between SQL and NoSQL databases, and when you would pick each.",
+    "How does a REST API handle a POST request end to end, from the client to the database?",
+    "What is the difference between authentication and authorization? Give a practical example.",
+    "Walk me through how you would debug a page that loads slowly in production.",
+    "What does a good pull request look like, and how do you review someone else's code?"
+   ],
+   "mid": [
+    "Design a rate limiter for a public API. What data structure would you use, and where does it live?",
+    "Your team's service goes down at peak traffic. How do you find the cause and what do you fix first?",
+    "Compare server-side rendering and client-side rendering for a content-heavy product.",
+    "How would you design database indexes for a query that filters by user, status, and date?",
+    "Explain how you would roll out a breaking API change without breaking existing clients."
+   ]
+  },
+  "Frontend Developer": {
+   "junior": [
+    "Explain the difference between flexbox and grid, and when you would use each.",
+    "What happens in the browser between typing a URL and seeing the page?",
+    "How do you make a form accessible to keyboard and screen-reader users?",
+    "What is the virtual DOM, and why do frameworks use it?",
+    "How would you debug a layout that breaks only on small screens?"
+   ],
+   "mid": [
+    "Design a component library for three products. How do you keep it consistent and versioned?",
+    "A page re-renders far too often. How do you find the cause and fix it?",
+    "Compare client-side state tools: when is local state enough, and when do you reach for a store?",
+    "How would you implement infinite scroll without hurting performance or accessibility?",
+    "Explain your approach to testing a checkout flow end to end."
+   ]
+  },
+  "Backend Developer": {
+   "junior": [
+    "What is an index in a database, and what does it cost you?",
+    "Explain how a web server handles many requests at once.",
+    "What is the difference between a 401 and a 403 response?",
+    "How do you keep secrets out of source code?",
+    "Walk me through designing a simple URL shortener."
+   ],
+   "mid": [
+    "Design a job queue for sending emails at scale. What breaks first?",
+    "How do you handle a database migration on a table with millions of rows and no downtime?",
+    "Compare caching strategies: what do you cache, where, and how do you invalidate it?",
+    "A downstream service is slow and timing out. How do you protect your service?",
+    "Explain eventual consistency with a real example from a product you know."
+   ]
+  },
+  "QA Engineer": {
+   "junior": [
+    "What is the difference between a bug report that gets fixed fast and one that bounces back?",
+    "Explain the difference between unit, integration, and end-to-end tests.",
+    "How do you test a login form, including the unhappy paths?",
+    "What do you do when you cannot reproduce a reported bug?",
+    "How do you decide what to test when time is short?"
+   ],
+   "mid": [
+    "Design a test strategy for a payments flow. What do you automate, and what stays manual?",
+    "A release introduced a regression nobody caught. What changes in your process afterwards?",
+    "How do you test an API contract between two teams?",
+    "Explain how you would load-test a service before a big launch.",
+    "How do you measure whether your test suite is actually useful?"
+   ]
+  }
+ },
+ "topics": [
+  "arrays",
+  "hash maps",
+  "stacks",
+  "strings",
+  "two pointers"
+ ],
+ "dsa": [
+  {
+   "id": "two-sum",
+   "title": "Two Sum",
+   "topic": "hash maps",
+   "difficulty": "easy",
+   "statement": "Given an array of integers and a target, return the indices of the two numbers that add up to the target. Assume exactly one solution, and do not reuse an element.",
+   "examples": [
+    {
+     "input": "nums = [2, 7, 11, 15], target = 9",
+     "output": "[0, 1]"
+    }
+   ],
+   "starter": "def two_sum(nums, target):\n    # your code here\n    pass",
+   "edge_cases": [
+    "empty array",
+    "no solution exists",
+    "duplicate numbers"
+   ],
+   "hints": [
+    "Nudge: for each number, what other number would complete the target?",
+    "Approach: remember numbers you have already seen and what you still need, so each lookup is fast instead of scanning the whole array again.",
+    "Pseudocode: seen = empty map; for each index i and value v: need = target - v; if need in seen, return [seen[need], i]; else store v at i."
+   ],
+   "keywords": [
+    "dict",
+    "map",
+    "hash",
+    "seen"
+   ]
+  },
+  {
+   "id": "valid-parentheses",
+   "title": "Valid Parentheses",
+   "topic": "stacks",
+   "difficulty": "easy",
+   "statement": "Given a string of brackets ()[]{} , decide whether it is valid: every opening bracket must be closed by the same type, in the correct order.",
+   "examples": [
+    {
+     "input": "s = \"()[]{}\"",
+     "output": "true"
+    },
+    {
+     "input": "s = \"(]\"",
+     "output": "false"
+    }
+   ],
+   "starter": "def is_valid(s):\n    # your code here\n    pass",
+   "edge_cases": [
+    "empty string",
+    "closing bracket first",
+    "unclosed opening bracket"
+   ],
+   "hints": [
+    "Nudge: which bracket did you see most recently, and what must come next?",
+    "Approach: track opening brackets in order, and match each closing bracket against the most recent unmatched one.",
+    "Pseudocode: stack = empty; for each character: if opening, push it; else if stack empty or top does not match, return false; else pop. Valid if stack is empty at the end."
+   ],
+   "keywords": [
+    "stack",
+    "push",
+    "pop"
+   ]
+  },
+  {
+   "id": "best-stock",
+   "title": "Best Time to Buy and Sell Stock",
+   "topic": "arrays",
+   "difficulty": "easy",
+   "statement": "Given daily prices, choose one day to buy and a later day to sell to maximise profit. Return the maximum profit, or 0 if no profit is possible.",
+   "examples": [
+    {
+     "input": "prices = [7, 1, 5, 3, 6, 4]",
+     "output": "5"
+    }
+   ],
+   "starter": "def max_profit(prices):\n    # your code here\n    pass",
+   "edge_cases": [
+    "prices always falling",
+    "single price",
+    "profit on the last day"
+   ],
+   "hints": [
+    "Nudge: you only need the lowest price seen so far, not every pair of days.",
+    "Approach: walk once, remembering the cheapest buy price and the best profit available at each step.",
+    "Pseudocode: min_price = infinity; best = 0; for each price: min_price = min(min_price, price); best = max(best, price - min_price)."
+   ],
+   "keywords": [
+    "min",
+    "max",
+    "profit"
+   ]
+  },
+  {
+   "id": "reverse-string",
+   "title": "Reverse a String In Place",
+   "topic": "two pointers",
+   "difficulty": "easy",
+   "statement": "Reverse a list of characters in place, using only constant extra space.",
+   "examples": [
+    {
+     "input": "s = ['h', 'e', 'l', 'l', 'o']",
+     "output": "['o', 'l', 'l', 'e', 'h']"
+    }
+   ],
+   "starter": "def reverse_string(s):\n    # your code here\n    pass",
+   "edge_cases": [
+    "empty list",
+    "single character",
+    "even vs odd length"
+   ],
+   "hints": [
+    "Nudge: which two positions would you swap first?",
+    "Approach: work from both ends towards the middle, swapping as you go.",
+    "Pseudocode: left = 0; right = last index; while left < right: swap s[left] and s[right]; left += 1; right -= 1."
+   ],
+   "keywords": [
+    "swap",
+    "left",
+    "right"
+   ]
+  },
+  {
+   "id": "anagram",
+   "title": "Valid Anagram",
+   "topic": "strings",
+   "difficulty": "easy",
+   "statement": "Given two strings, decide whether one is an anagram of the other: same letters, same counts, possibly different order.",
+   "examples": [
+    {
+     "input": "s = \"anagram\", t = \"nagaram\"",
+     "output": "true"
+    },
+    {
+     "input": "s = \"rat\", t = \"car\"",
+     "output": "false"
+    }
+   ],
+   "starter": "def is_anagram(s, t):\n    # your code here\n    pass",
+   "edge_cases": [
+    "different lengths",
+    "empty strings",
+    "repeated letters"
+   ],
+   "hints": [
+    "Nudge: what has to match \u2014 the letters, or something about them?",
+    "Approach: count how many times each letter appears in each string, then compare the counts.",
+    "Pseudocode: if lengths differ, return false; count letters in s; subtract counts for letters in t; valid if every count is zero."
+   ],
+   "keywords": [
+    "count",
+    "counter",
+    "freq"
+   ]
+  },
+  {
+   "id": "contains-duplicate",
+   "title": "Contains Duplicate",
+   "topic": "hash maps",
+   "difficulty": "easy",
+   "statement": "Given an integer array, return true if any value appears at least twice, and false otherwise.",
+   "examples": [
+    {
+     "input": "nums = [1, 2, 3, 1]",
+     "output": "true"
+    },
+    {
+     "input": "nums = [1, 2, 3, 4]",
+     "output": "false"
+    }
+   ],
+   "starter": "def contains_duplicate(nums):\n    # your code here\n    pass",
+   "edge_cases": [
+    "empty array",
+    "duplicate at the end",
+    "all values identical"
+   ],
+   "hints": [
+    "Nudge: what do you need to remember as you scan?",
+    "Approach: keep a set of values seen so far; a repeat means an immediate answer.",
+    "Pseudocode: seen = empty set; for each value: if value in seen, return true; add value to seen. Return false."
+   ],
+   "keywords": [
+    "set",
+    "seen"
+   ]
+  },
+  {
+   "id": "move-zeroes",
+   "title": "Move Zeroes",
+   "topic": "two pointers",
+   "difficulty": "easy",
+   "statement": "Move all zeroes in an array to the end, keeping the relative order of the non-zero elements, in place.",
+   "examples": [
+    {
+     "input": "nums = [0, 1, 0, 3, 12]",
+     "output": "[1, 3, 12, 0, 0]"
+    }
+   ],
+   "starter": "def move_zeroes(nums):\n    # your code here\n    pass",
+   "edge_cases": [
+    "no zeroes",
+    "all zeroes",
+    "zeroes at the end"
+   ],
+   "hints": [
+    "Nudge: one pointer can mark where the next non-zero element belongs.",
+    "Approach: sweep once, placing non-zeroes at the front in order, then fill the rest with zeroes.",
+    "Pseudocode: place = 0; for each value: if value != 0: nums[place] = value; place += 1; then fill nums[place:] with 0."
+   ],
+   "keywords": [
+    "place",
+    "index",
+    "zero"
+   ]
+  },
+  {
+   "id": "longest-substring",
+   "title": "Longest Substring Without Repeating Characters",
+   "topic": "strings",
+   "difficulty": "medium",
+   "statement": "Given a string, find the length of the longest substring without repeating characters.",
+   "examples": [
+    {
+     "input": "s = \"abcabcbb\"",
+     "output": "3"
+    },
+    {
+     "input": "s = \"bbbbb\"",
+     "output": "1"
+    }
+   ],
+   "starter": "def length_of_longest_substring(s):\n    # your code here\n    pass",
+   "edge_cases": [
+    "empty string",
+    "all same character",
+    "repeat far apart"
+   ],
+   "hints": [
+    "Nudge: when a character repeats, what part of your current window is still usable?",
+    "Approach: slide a window across the string, remembering where each character was last seen, and shrink from the left past any repeat.",
+    "Pseudocode: left = 0; best = 0; last_seen = map; for right, ch in string: if ch seen at or after left, left = last_seen[ch] + 1; record ch at right; best = max(best, right - left + 1)."
+   ],
+   "keywords": [
+    "window",
+    "left",
+    "right",
+    "seen"
+   ]
+  }
+ ]
+}

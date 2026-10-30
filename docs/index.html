@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PrepCoach — Placement-prep AI coach</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>PrepCoach</h1>
+  <p>Practice for placements: mock interviews, resume teardowns, and DSA practice with hints — not answers.</p>
+  <div id="mode-banner" class="banner">Checking coach mode…</div>
+</header>
+<nav>
+  <button data-tab="interview" class="active">Mock interview</button>
+  <button data-tab="resume">Resume teardown</button>
+  <button data-tab="dsa">DSA practice</button>
+</nav>
+<main>
+  <section id="tab-interview" class="tab active">
+    <h2>Mock interview</h2>
+    <label>Role <select id="iv-role"></select></label>
+    <label>Level <select id="iv-level"><option>junior</option><option>mid</option></select></label>
+    <button id="iv-start">Start interview</button>
+    <div id="iv-area" class="hidden">
+      <p id="iv-question" class="question"></p>
+      <textarea id="iv-answer" rows="4" placeholder="Type your answer…"></textarea>
+      <button id="iv-send">Send answer</button>
+      <div id="iv-debrief" class="debrief hidden"></div>
+    </div>
+  </section>
+
+  <section id="tab-resume" class="tab">
+    <h2>Resume teardown</h2>
+    <p>Paste your resume text. PrepCoach analyses only what you pasted — it never invents experience, employers, or numbers.</p>
+    <textarea id="rs-text" rows="12" placeholder="Paste resume text here…"></textarea>
+    <button id="rs-go">Analyse my resume</button>
+    <div id="rs-out"></div>
+  </section>
+
+  <section id="tab-dsa" class="tab">
+    <h2>DSA practice</h2>
+    <label>Topic <select id="dsa-topic"><option value="">All topics</option></select></label>
+    <select id="dsa-problem"></select>
+    <div id="dsa-detail"></div>
+    <div id="dsa-hints">
+      <button data-level="1">Hint 1 — nudge</button>
+      <button data-level="2">Hint 2 — approach</button>
+      <button data-level="3">Hint 3 — pseudocode</button>
+      <p id="dsa-hint-text"></p>
+    </div>
+    <textarea id="dsa-code" rows="8" placeholder="Paste your solution here…"></textarea>
+    <button id="dsa-review">Review my solution</button>
+    <div id="dsa-review-out"></div>
+  </section>
+</main>
+<footer>
+  <p>Practice guidance only — not a real assessment, and no placement is guaranteed. Your pasted text stays in your browser session unless a live model key is configured on the server.</p>
+</footer>
+<script src="app.js"></script>
+</body>
+</html>
